@@ -56,7 +56,6 @@ function ajax_user_filter(){
 	$results = array(
 		'table' =>  $table,
 		'pagination' => $new_pagination,
-
 	);
 	echo json_encode( $results );;
 

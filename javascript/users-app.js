@@ -46,6 +46,7 @@ function filterUsers(event) {
                 }
             })
         })
+        .catch(() => { console.log('error') })
         .finally(() => {
             document.querySelector('#table-response').style.opacity = '1';
         });
