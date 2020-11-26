@@ -1,5 +1,6 @@
 <?php
 define( 'TEMP_DIR_URI', get_template_directory_uri() );
+
 function user_filter_assets() {
 
     wp_enqueue_script('userjs', TEMP_DIR_URI .'/javascript/users-app.js', '', null, true);
@@ -56,6 +57,7 @@ function ajax_user_filter(){
 	$results = array(
 		'table' =>  $table,
 		'pagination' => $new_pagination,
+
 	);
 	echo json_encode( $results );;
 
