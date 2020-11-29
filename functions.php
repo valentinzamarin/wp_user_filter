@@ -13,7 +13,6 @@ function user_filter_assets() {
 add_action('wp_enqueue_scripts', 'user_filter_assets', 100);
 
 add_action('wp_ajax_user_filter', 'ajax_user_filter');
-add_action('wp_ajax_nopriv_user_filter', 'ajax_user_filter');
 function ajax_user_filter(){
 
 	if( !isset( $_POST['nonce'] ) || !wp_verify_nonce( $_POST['nonce'], 'users_filter' ) )
