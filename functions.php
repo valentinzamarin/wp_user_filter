@@ -1,6 +1,13 @@
 <?php
 define( 'TEMP_DIR_URI', get_template_directory_uri() );
 
+function page_user_roles(){
+	$table_template = get_template_part('/template/table');
+	echo $table_template;
+}
+
+add_shortcode( 'user_roles', 'page_user_roles');
+
 function user_filter_assets() {
 
     wp_enqueue_script('userjs', TEMP_DIR_URI .'/javascript/users-app.js', '', null, true);
@@ -30,22 +37,22 @@ function ajax_user_filter(){
 		'order' => $_POST['order'],
     );
 	$new_user_query = new WP_User_Query( $new_args );
-	
+
 	$table = '';
     if ( ! empty( $new_user_query->get_results() ) ) {
         foreach ( $new_user_query->get_results() as $user ) {
             $user_meta = get_userdata($user->ID);
 			$user_role = $user_meta->roles[0];
-			
+
             $table .= '<tr>';
             $table .= '<td>' . $user->display_name . '</td>';
             $table .= '<td>' . $user->user_email . '</td>';
             $table .= '<td>' . $user_role . '</td>';
             $table .= '</tr>';
         }
-	} 
-	
-	$total_users = $new_user_query->total_users; 
+	}
+
+	$total_users = $new_user_query->total_users;
 	$page_count = ceil( $total_users / $users_per_page );
 
 	$new_pagination = '';
