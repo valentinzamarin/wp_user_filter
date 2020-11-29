@@ -2,8 +2,12 @@
 define( 'TEMP_DIR_URI', get_template_directory_uri() );
 
 function page_user_roles(){
-	$table_template = get_template_part('/template/table');
-	echo $table_template;
+	$user = wp_get_current_user();
+	$allowed_roles = array('administrator');
+	if( array_intersect($allowed_roles, $user->roles ) ) {
+			$table_template = get_template_part('/template/table');
+			echo $table_template;
+	}
 }
 
 add_shortcode( 'user_roles', 'page_user_roles');
